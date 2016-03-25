@@ -22,8 +22,6 @@ Enemy.prototype.update = function(dt) {
     if (this.x >= 505) {
         this.x = 0;
     }
-    //Check for collision
-    checkCollision(this);
 };
 
 // Draw the enemy on the screen, required method for game
