@@ -172,7 +172,7 @@ var Engine = (function(global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/Gem-Blue.png'
+        'images/Gem Blue.png'
     ]);
     Resources.onReady(init);
 
@@ -182,3 +182,28 @@ var Engine = (function(global) {
      */
     global.ctx = ctx;
 })(this);
+
+//Check for collision
+var checkCollision = function(anEnemy) {
+    if (player.y+131 >= anEnemy.y+90 && player.x+25 <= anEnemy.x+88 && player.y+73 <= anEnemy.y+135 && player.x+76>=anEnemy.x+11) {
+        player.x = 202.5;
+        player.y = 383;
+        console.log('collision');
+    }
+    //check if player reached the end of canvas
+    if (player.y+63 <= 0) {
+        player.x = 202.5;
+        player.y = 383;
+        score++;
+        console.log(score); 
+
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0,0,505,171);
+
+        increaseDifficulty(score);
+    }
+    //Prevent player from exceeding wall boundry
+    if (player.y > 383) {player.y = 383;}
+    if (player.x > 402.5) {player.x = 402.5;}
+    if (player.x < 2.5) {player.x = 2.5;}
+};
