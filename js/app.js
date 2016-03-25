@@ -1,3 +1,4 @@
+'use strict';
 // Enemies our player must avoid
 var Enemy = function(x,y,speed) {
     // Variables applied to each of our instances go here,
@@ -64,38 +65,12 @@ var Gems = function(x,y){
 };
 //Update
 Gems.prototype.update = function(){
-    
+
 };
 //Render Gems
 Gems.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite),this.x,this.y); 
 };
-
-//Check for collision
-var checkCollision = function(anEnemy) {
-    if (player.y+131 >= anEnemy.y+90 && player.x+25 <= anEnemy.x+88 && player.y+73 <= anEnemy.y+135 && player.x+76>=anEnemy.x+11) {
-        player.x = 202.5;
-        player.y = 383;
-        console.log('collision');
-    }
-    //check if player reached the end of canvas
-    if (player.y+63 <= 0) {
-        player.x = 202.5;
-        player.y = 383;
-        score++;
-        console.log(score); 
-
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0,0,505,171);
-
-        increaseDifficulty(score);
-    }
-    //Prevent player from exceeding wall boundry
-    if (player.y > 383) {player.y = 383;}
-    if (player.x > 402.5) {player.x = 402.5;}
-    if (player.x < 2.5) {player.x = 2.5;}
-};
-
 
 //increase Diffculty by increase number of bugs
 var increaseDifficulty = function(numEnemies){
@@ -113,8 +88,6 @@ var player = new Player(202.5,383,50);
 var score = 0;
 var enemy = new Enemy(0, Math.random() * 184 + 50, Math.random() * 256);
 allEnemies.push(enemy);
-
-
 
 var allGems = [];
 var gems = new Gems(Math.random() * 180, Math.random() * 200);
